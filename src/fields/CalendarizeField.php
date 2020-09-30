@@ -167,6 +167,10 @@ class CalendarizeField extends Field implements PreviewableFieldInterface
         if (empty($value->startDate) && empty($value->endDate)) {
             return '-';
         }
+
+        if (!$value->next()) {
+            return '-';
+        }
         
         $hr = $value->readable(['locale' => Craft::$app->locale->id]);
         $html = "<span title=\"{$hr}\">";
